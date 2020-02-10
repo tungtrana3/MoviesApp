@@ -1,8 +1,9 @@
 import React from 'react';
-import { FlatList, ActivityIndicator, Text, View, Button  } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { FlatList, ActivityIndicator, Text, View, Button, StyleSheet  } from 'react-native';
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 
+import RootStack from './App';
 export default class Genders extends React.Component {
 
   constructor(props){
@@ -37,7 +38,17 @@ export default class Genders extends React.Component {
       <View style={{flex: 1, paddingTop:20}}>
         <FlatList
           data={this.state.dataSource}
-          renderItem={({item}) => <Button title={item.name}></Button>}
+          renderItem={({item}) => 
+          <Button 
+            title={item.name}
+            style={styles.btn_genders}
+            onPress={() => {
+              this.props.navigation.navigate('Stack_Movies', {
+                genresID : item.id,
+              });
+            }}
+            ></Button>
+          }
           keyExtractor={({id}, index) => id}
         >
         </FlatList>
@@ -45,3 +56,10 @@ export default class Genders extends React.Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+    btn_genders: {
+      backgroundColor: '#0059FF',
+      padding: 4,
+    },
+});

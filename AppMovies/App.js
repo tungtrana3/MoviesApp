@@ -1,19 +1,19 @@
-import 'react-native-gesture-handler';
 import * as React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 
 import Genders from './Genders';
+import Movies from './Movies';
+import DetailsMovies from './DetailsMovies';
 
-const Stack = createStackNavigator();
+const RootStack = createStackNavigator(
+  {
+    Stack_Genders: Genders,
+    Stack_Movies: Movies,
+    Stack_DetailsMovies: DetailsMovies,
+  },
+  {
+    initialRouteName: 'Stack_Genders',
+  });
 
-
-export default function App() {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Genders" component={Genders} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
-}
+  export default createAppContainer(RootStack);
