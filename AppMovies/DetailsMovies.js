@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ActivityIndicator, Text, View, Image } from 'react-native';
+import { ActivityIndicator, Text, View, Image,StyleSheet, Dimensions, Button } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 
@@ -10,10 +10,12 @@ export default class DetailsMovies extends React.Component {
             isLoading: true,
             id: '',
             backdrop_path: '',
+            poster_path: '',
             title: '',
             original_language: '',
             runtime: '',
             release_date: '',
+            overview: '',
         }
     }
     componentDidMount() {
@@ -24,12 +26,14 @@ export default class DetailsMovies extends React.Component {
             .then((responseJson) => {
                 this.setState({
                     isLoading: false,
-                    id: responseJson.id,
-                    backdrop_path: responseJson.backdrop_path,
-                    title: responseJson.title,
-                    original_language: responseJson.original_language,
-                    runtime: responseJson.runtime,
-                    release_date: responseJson.release_date,
+          id: responseJson.id,
+          backdrop_path: responseJson.backdrop_path,
+          poster_path: responseJson.poster_path,
+          title: responseJson.title,
+          original_language: responseJson.original_language,
+          overview: responseJson.overview,
+          runtime: responseJson.runtime,
+          release_date: responseJson.release_date,
                 }, function () {
                 });
             })
@@ -46,19 +50,77 @@ export default class DetailsMovies extends React.Component {
             );
         }
         return (
-            <View style={{ flex: 1, paddingTop: 20 }}>
-                <View>
-                    <Image source={{ uri: 'https://image.tmdb.org/t/p/w600_and_h900_bestv2' + this.state.backdrop_path }}
-                        style={{width:200, height: 300}}
-                    ></Image>
-                </View>
-                <View>
-                    <Text style={{fontSize: 45, color:'red'}}>{this.state.title}</Text>
-                    <Text style={{fontSize: 35}}>Language: {this.state.original_language}</Text>
-                    <Text style={{fontSize: 35}}>Time: {this.state.runtime} minutes</Text>
-                    <Text style={{fontSize: 35}}>Release date: {this.state.release_date}</Text>
-                </View>
+            <View style={styles.Container}>
+        <View style={styles.Img_background}>
+          <Image
+            source={{ uri: 'https://image.tmdb.org/t/p/w600_and_h900_bestv2' + this.state.backdrop_path }}
+            style={{ width: img_width, height: 200 }}
+            resizeMode='cover' >
+          </Image>
+        </View>
+        <View style={styles.btn_Button}>
+          <View style={{ flex: 1, flexDirection: 'row' }}>
+            <View style={[{ width: "30%", height: "50%", margin: 10, backgroundColor: "red" }]}>
+              <Button title="♥" />
             </View>
-        )
+            <View style={[{ width: "30%", height: "50%", margin: 10, backgroundColor: "red" }]}>
+              <Button title="♥" />
+            </View>
+            <View style={[{ width: "30%", height: "50%", margin: 10, backgroundColor: "red" }]}>
+              <Button title="♥" />
+            </View>
+          </View>
+        </View>
+
+        <View style={styles.Details}>
+          <View style={styles.Details_title, { flexDirection: 'row' }}>
+            <View>
+              <Image
+                source={{ uri: 'https://image.tmdb.org/t/p/w600_and_h900_bestv2' + this.state.poster_path }}
+                style={{ width: 150, height: 150 }}
+                resizeMode='cover' >
+              </Image>
+            </View>
+            <View>
+              <Text style={{ fontSize: 20, fontWeight: 'bold', color: 'red' }}>{this.state.title}</Text>
+              <Text style={{ fontSize: 20 }}>Language: {this.state.original_language}</Text>
+              <Text style={{ fontSize: 20 }}>Time: {this.state.runtime} minutes</Text>
+              <Text style={{ fontSize: 20 }}>Release date: {this.state.release_date}</Text>
+            </View>
+          </View>
+          <View style={styles.Details_infor}>
+            <Text style={{ fontSize: 20}}>
+              Contain:
+               {this.state.overview}
+            </Text>
+          </View>
+        </View>
+      </View>
+        );
     }
 }
+const styles = StyleSheet.create({
+    Container: {
+      flex: 1,
+      //backgroundColor: '#FF99CC',
+    },
+    Img_background: {
+      flex: 3,
+      backgroundColor: '#AAAAAA',
+    },
+    btn_Button: {
+      flex: 1,
+    },
+    Details: {
+      flex: 6,
+      //backgroundColor: '#FABB00',
+      marginTop: 20,
+    },
+    Details_title: {
+      flex: 3,
+    },
+    Details_infor: {
+      flex: 7,
+    },
+  })
+  var { img_width } = Dimensions.get('window');
