@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { FlatList, ActivityIndicator, Text, View, Button, ListView, TouchableOpacity, Image } from 'react-native';
-import { createAppContainer } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack';
 
 export default class Movies extends React.Component {
     constructor(props) {
