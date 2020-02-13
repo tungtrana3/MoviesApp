@@ -17,21 +17,6 @@ export default class Movies extends React.Component {
         super(props);
         this.state = { isLoading: true }
     }
-    static navigationOptions = {
-        headerLeft: null,
-        headerRight: () => (
-            <View style={{ flexDirection: 'row' }}>
-                <Icon.Button size={30} backgroundColor='#FFFFFF' color='' name='bell' ></Icon.Button>
-            </View>
-        ),
-        headerTitle: () => (
-            <View style={{ flexDirection: 'row' }}>
-                <Icon.Button size={30} backgroundColor='#FFFFFF' color='' name='bars' ></Icon.Button>
-                <TextInput style={{ borderColor: 'gray', borderWidth: 1, width: 230, height: '90%' }}></TextInput>
-            </View>
-        ),
-        headerBackTitleVisible: false,
-    };
     componentDidMount() {
         const { navigation } = this.props;
         const genresID = navigation.getParam('genresID', 'NO-ID');
@@ -57,18 +42,19 @@ export default class Movies extends React.Component {
             );
         }
         return (
-            <View style={{ flex: 1 }}>
+            <View style={{ flex: 1, justifyContent:'center', alignItems:'center' }}>
                 <FlatList
                     data={this.state.dataSource}
                     numColumns={2}
+                    style={{ flex:1}}
                     renderItem={({ item }) =>
+                    <View style={{padding:10}}>
                         <TouchableOpacity
-                            style={styles.Movies_item}
+                        style={styles.Movies_item}
                             onPress={() =>
                                 this.props.navigation.navigate('Stack_DetailsMovies', {
                                     Moviesid: item.id
                                 })}>
-                            <View style={{ flex: 1, flexDirection: 'column' }}>
                                 <View style={{ flex: 7, width:width_item }}>
                                     <Image style={{ width: 160, height: 200, margin: 2 }}
                                         source={{ uri: 'https://image.tmdb.org/t/p/w600_and_h900_bestv2' + item.backdrop_path }} />
@@ -76,9 +62,8 @@ export default class Movies extends React.Component {
                                 <View style={{ flexDirection: 'row' }} >
                                     <Text style={{  flex: 1,flexWrap: "wrap", fontSize: 15 }}> {item.title}</Text>
                                 </View>
-
-                            </View>
                         </TouchableOpacity>
+                        </View>
                     }
                     keyExtractor={({ id }, index) => id}
                 >
@@ -91,7 +76,11 @@ export default class Movies extends React.Component {
 const styles = StyleSheet.create({
     Movies_item: {
         width: width_item,
-        paddingLeft: 20,
+        flex: 1,
+        flexDirection: 'column',
+        padding: 5,
+        borderColor: 'gray',
+        borderWidth: 1,
     },
 });
 var { width_item } = Dimensions.get('window') / 2;
