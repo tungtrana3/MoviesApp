@@ -1,5 +1,15 @@
 import React, { Component } from 'react';
-import { FlatList, ActivityIndicator, Text, View, Button, TextInput, TouchableOpacity, Image } from 'react-native';
+import {
+    FlatList,
+    ActivityIndicator,
+    Text,
+    View,
+    Dimensions,
+    TextInput,
+    TouchableOpacity,
+    Image,
+    StyleSheet,
+} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
 export default class Movies extends React.Component {
@@ -17,7 +27,7 @@ export default class Movies extends React.Component {
         headerTitle: () => (
             <View style={{ flexDirection: 'row' }}>
                 <Icon.Button size={30} backgroundColor='#FFFFFF' color='' name='bars' ></Icon.Button>
-                <TextInput style={{borderColor: 'gray', borderWidth: 1, width: 230, height:'90%'}}></TextInput>
+                <TextInput style={{ borderColor: 'gray', borderWidth: 1, width: 230, height: '90%' }}></TextInput>
             </View>
         ),
         headerBackTitleVisible: false,
@@ -50,14 +60,24 @@ export default class Movies extends React.Component {
             <View style={{ flex: 1 }}>
                 <FlatList
                     data={this.state.dataSource}
+                    numColumns={2}
                     renderItem={({ item }) =>
-                        <TouchableOpacity onPress={() =>
-                            this.props.navigation.navigate('Stack_DetailsMovies', {
-                                Moviesid: item.id
-                            })}>
-                            <Text style={{ fontSize: 25 }}> {item.title}</Text>
-                            <Image style={{ width: 300, height: 200, margin: 2 }}
-                                source={{ uri: 'https://image.tmdb.org/t/p/w600_and_h900_bestv2' + item.backdrop_path }} />
+                        <TouchableOpacity
+                            style={styles.Movies_item}
+                            onPress={() =>
+                                this.props.navigation.navigate('Stack_DetailsMovies', {
+                                    Moviesid: item.id
+                                })}>
+                            <View style={{ flex: 1, flexDirection: 'column' }}>
+                                <View style={{ flex: 7, width:width_item }}>
+                                    <Image style={{ width: 160, height: 200, margin: 2 }}
+                                        source={{ uri: 'https://image.tmdb.org/t/p/w600_and_h900_bestv2' + item.backdrop_path }} />
+                                </View>
+                                <View style={{ flexDirection: 'row' }} >
+                                    <Text style={{  flex: 1,flexWrap: "wrap", fontSize: 15 }}> {item.title}</Text>
+                                </View>
+
+                            </View>
                         </TouchableOpacity>
                     }
                     keyExtractor={({ id }, index) => id}
@@ -67,3 +87,11 @@ export default class Movies extends React.Component {
         )
     }
 }
+
+const styles = StyleSheet.create({
+    Movies_item: {
+        width: width_item,
+        paddingLeft: 20,
+    },
+});
+var { width_item } = Dimensions.get('window') / 2;
