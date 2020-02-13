@@ -44,9 +44,9 @@ export default class DetailsMovies extends React.Component {
   }
   render() {
     var loop_star = [];
-    for (let i = 0; i < (this.state.vote_average*0.5); i++) {
+    for (let i = 0; i < (this.state.vote_average * 0.5); i++) {
       loop_star.push(
-          <Icon name="star" color="yellow" size={30} />
+        <Icon name="star" color="yellow" size={30} />
       );
     }
     if (this.state.isLoading) {
@@ -58,54 +58,56 @@ export default class DetailsMovies extends React.Component {
     }
     return (
       <View style={styles.Container}>
-        <View style={styles.Img_background}>
-          <Image
-            source={{ uri: 'https://image.tmdb.org/t/p/w600_and_h900_bestv2' + this.state.backdrop_path }}
-            style={{ width: img_width, height: 200 }}
-            resizeMode='cover' >
-          </Image>
-        </View>
-        <View style={styles.btn_Button}>
-          <View style={{ flex: 1, flexDirection: 'row', justifyContent:'center' }}>
-            <View style={styles.View_Icon_button}>
-              <Icon.Button style={styles.Icon_button} color='red' name='heart'></Icon.Button>
-            </View>
-            <View style={styles.View_Icon_button}>
-              <Icon.Button style={styles.Icon_button} color='red' name='play'></Icon.Button>
-            </View>
-            <View style={styles.View_Icon_button}>
-              <Icon.Button style={styles.Icon_button} color='red' name='bars' ></Icon.Button>
+        <ScrollView>
+          <View style={styles.Img_background}>
+            <Image
+              source={{ uri: 'https://image.tmdb.org/t/p/w600_and_h900_bestv2' + this.state.backdrop_path }}
+              style={{ width: img_width, height: 200 }}
+              resizeMode='cover' >
+            </Image>
+          </View>
+          <View style={styles.btn_Button}>
+            <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center' }}>
+              <View style={styles.View_Icon_button}>
+                <Icon.Button style={styles.Icon_button} color='red' name='heart'></Icon.Button>
+              </View>
+              <View style={styles.View_Icon_button}>
+                <Icon.Button style={styles.Icon_button} color='red' name='bell'>Trailer</Icon.Button>
+              </View>
+              <View style={styles.View_Icon_button}>
+                <Icon.Button style={styles.Icon_button} color='green' name='arrow-circle-down' >Download</Icon.Button>
+              </View>
             </View>
           </View>
-        </View>
 
-        <View style={styles.Details}>
-          <ScrollView>
-          <View style={styles.Details_title, { flexDirection: 'row' }}>
-            <View>
-              <Image
-                source={{ uri: 'https://image.tmdb.org/t/p/w600_and_h900_bestv2' + this.state.poster_path }}
-                style={{ width: 180, height: 230 }}
-                resizeMode='cover' >
-              </Image>
+          <View style={styles.Details}>
+
+            <View style={styles.Details_title, { flexDirection: 'row' }}>
+              <View>
+                <Image
+                  source={{ uri: 'https://image.tmdb.org/t/p/w600_and_h900_bestv2' + this.state.poster_path }}
+                  style={{ width: 180, height: 230 }}
+                  resizeMode='cover' >
+                </Image>
+              </View>
+              <View style={{ paddingLeft: 10 }}>
+                <Text style={{ fontSize: 20, fontWeight: 'bold', color: 'red' }}>{this.state.title}</Text>
+                <View style={{ flexDirection: 'row' }}>{loop_star}</View>
+                <Text></Text>
+                <Text style={{ fontSize: 20 }}><Icon name='hourglass-start' size={20}></Icon> {this.state.runtime} minutes</Text>
+                <Text style={{ fontSize: 20 }}><Icon name='language' size={20}></Icon> {this.state.original_language}</Text>
+                <Text style={{ fontSize: 20 }}><Icon name='calendar' size={20}></Icon> {this.state.release_date}</Text>
+              </View>
             </View>
-            <View style={{paddingLeft: 10}}>
-              <Text style={{ fontSize: 20, fontWeight: 'bold', color: 'red' }}>{this.state.title}</Text>
-              <View style={{flexDirection:'row'}}>{loop_star}</View>
-              <Text></Text>
-              <Text style={{ fontSize: 20 }}><Icon name='hourglass-start' size={20}></Icon> {this.state.runtime} minutes</Text>
-              <Text style={{ fontSize: 20 }}><Icon name='language' size={20}></Icon> {this.state.original_language}</Text>
-              <Text style={{ fontSize: 20 }}><Icon name='calendar' size={20}></Icon> {this.state.release_date}</Text>
-            </View>
-          </View>
-          <View style={styles.Details_infor}>
-            <Text style={{ fontSize: 20 }}>
-              Contain:
+            <View style={styles.Details_infor}>
+              <Text style={{ fontSize: 20 }}>
+                Contain:
                {this.state.overview}
-            </Text>
+              </Text>
+            </View>
+
           </View>
-          </ScrollView>
-        </View>
+        </ScrollView>
       </View>
     );
   }
@@ -128,9 +130,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#AAAAAA',
   },
   btn_Button: {
-    flex: 1,
-    borderColor:'black',
-    borderBottomWidth:1,
+    flex: 0.75,
+    borderColor: 'black',
+    borderBottomWidth: 1,
   },
   Details: {
     flex: 6,

@@ -1,11 +1,27 @@
 import React, { Component } from 'react';
-import { FlatList, ActivityIndicator, Text, View, Button, ListView, TouchableOpacity, Image } from 'react-native';
+import { FlatList, ActivityIndicator, Text, View, Button, TextInput, TouchableOpacity, Image } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 
 export default class Movies extends React.Component {
     constructor(props) {
         super(props);
         this.state = { isLoading: true }
     }
+    static navigationOptions = {
+        headerLeft: null,
+        headerRight: () => (
+            <View style={{ flexDirection: 'row' }}>
+                <Icon.Button size={30} backgroundColor='#FFFFFF' color='' name='bell' ></Icon.Button>
+            </View>
+        ),
+        headerTitle: () => (
+            <View style={{ flexDirection: 'row' }}>
+                <Icon.Button size={30} backgroundColor='#FFFFFF' color='' name='bars' ></Icon.Button>
+                <TextInput style={{borderColor: 'gray', borderWidth: 1, width: 230, height:'90%'}}></TextInput>
+            </View>
+        ),
+        headerBackTitleVisible: false,
+    };
     componentDidMount() {
         const { navigation } = this.props;
         const genresID = navigation.getParam('genresID', 'NO-ID');
@@ -31,7 +47,7 @@ export default class Movies extends React.Component {
             );
         }
         return (
-            <View style={{ flex: 1, paddingTop: 20 }}>
+            <View style={{ flex: 1 }}>
                 <FlatList
                     data={this.state.dataSource}
                     renderItem={({ item }) =>
@@ -39,7 +55,7 @@ export default class Movies extends React.Component {
                             this.props.navigation.navigate('Stack_DetailsMovies', {
                                 Moviesid: item.id
                             })}>
-                            <Text style={{fontSize: 25}}> {item.title}</Text>
+                            <Text style={{ fontSize: 25 }}> {item.title}</Text>
                             <Image style={{ width: 300, height: 200, margin: 2 }}
                                 source={{ uri: 'https://image.tmdb.org/t/p/w600_and_h900_bestv2' + item.backdrop_path }} />
                         </TouchableOpacity>
