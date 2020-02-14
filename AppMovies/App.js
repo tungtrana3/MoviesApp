@@ -46,6 +46,6 @@ const RootStack = createStackNavigator(
     },
     Stack_TrendingWeek: {
       screen: TrendingWeek,
-    }
+    },
   });
   export default createAppContainer(MyDrawerNavigation);

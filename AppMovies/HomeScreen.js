@@ -9,15 +9,14 @@ import {
     TouchableOpacity,
     Image,
     StyleSheet,
+    ImageBackground,
 } from 'react-native';
-import { createAppContainer } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack';
-import { createDrawerNavigator } from 'react-navigation-drawer';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import Genders from './Genders';
 import Movies from './Movies';
 import DetailsMovies from './DetailsMovies';
 import TrendingWeek from './TrendingWeek';
+import TrendingDay from './TrendingDay';
 export default class HomeScreen extends React.Component{
     static navigationOptions = {
         drawerLabel: 'Trang chủ',
@@ -25,19 +24,22 @@ export default class HomeScreen extends React.Component{
       };
     render(){
         return(
+            <ImageBackground source={require('./IMG/background.jpg')} style={{width: '100%', height: '100%'}}>
             <View style={styles.container}>
                 <View style={styles.topweekMovies}>
-                    <Icon color='red' size={30} name='bookmark'> Top week</Icon>
+                    <Icon color='red' size={25} name='bookmark'> Top week</Icon>
                     <TrendingWeek></TrendingWeek>
+                    <Icon color='red' size={25} name='bookmark'> Top Day</Icon>
+                    <TrendingDay></TrendingDay>
                 </View>
             </View>
+            </ImageBackground> 
         );
     }
 }
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#FFCCFF',
     },
     topweekMovies: {
         padding: 5,

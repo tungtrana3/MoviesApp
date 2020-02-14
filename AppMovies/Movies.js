@@ -9,6 +9,7 @@ import {
     TouchableOpacity,
     Image,
     StyleSheet,
+    ImageBackground,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
@@ -42,33 +43,35 @@ export default class Movies extends React.Component {
             );
         }
         return (
-            <View style={{ flex: 1, justifyContent:'center', alignItems:'center' }}>
-                <FlatList
-                    data={this.state.dataSource}
-                    numColumns={2}
-                    style={{ flex:1}}
-                    renderItem={({ item }) =>
-                    <View style={{padding:10}}>
-                        <TouchableOpacity
-                        style={styles.Movies_item}
-                            onPress={() =>
-                                this.props.navigation.navigate('Stack_DetailsMovies', {
-                                    Moviesid: item.id
-                                })}>
-                                <View style={{ flex: 7, width:width_item }}>
-                                    <Image style={{ width: 160, height: 200, margin: 2 }}
-                                        source={{ uri: 'https://image.tmdb.org/t/p/w600_and_h900_bestv2' + item.backdrop_path }} />
-                                </View>
-                                <View style={{ flexDirection: 'row' }} >
-                                    <Text style={{  flex: 1,flexWrap: "wrap", fontSize: 15 }}> {item.title}</Text>
-                                </View>
-                        </TouchableOpacity>
-                        </View>
-                    }
-                    keyExtractor={({ id }, index) => id}
-                >
-                </FlatList>
-            </View>
+            <ImageBackground source={require('./IMG/background.jpg')} style={{ width: '100%', height: '100%' }}>
+                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                    <FlatList
+                        data={this.state.dataSource}
+                        numColumns={2}
+                        style={{ flex: 1 }}
+                        renderItem={({ item }) =>
+                            <View style={{ padding: 10 }}>
+                                <TouchableOpacity
+                                    style={styles.Movies_item}
+                                    onPress={() =>
+                                        this.props.navigation.navigate('Stack_DetailsMovies', {
+                                            Moviesid: item.id
+                                        })}>
+                                    <View style={{ flex: 7, width: width_item, height: 250 }}>
+                                        <Image style={{ flex:1,width: 150, resizeMode:'contain', margin: 2 }}
+                                            source={{ uri: 'https://image.tmdb.org/t/p/w600_and_h900_bestv2' + item.poster_path }} />
+                                    </View>
+                                    <View style={{ flexDirection: 'row' }} >
+                                        <Text style={{ flex: 1, flexWrap: "wrap", fontSize: 15 }}> {item.title}</Text>
+                                    </View>
+                                </TouchableOpacity>
+                            </View>
+                        }
+                        keyExtractor={({ id }, index) => id}
+                    >
+                    </FlatList>
+                </View>
+            </ImageBackground>
         )
     }
 }
