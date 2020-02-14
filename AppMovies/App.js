@@ -29,7 +29,8 @@ const RootStack = createStackNavigator(
         ),
         headerTitle: () => (
             <View style={{ flexDirection: 'row' }}>
-                <Icon.Button size={30} backgroundColor='#FFFFFF' color='' name='bars' ></Icon.Button>
+                <Icon.Button size={30} backgroundColor='#FFFFFF' color='' name='bars' 
+                ></Icon.Button>
                 <TextInput style={{ borderColor: 'gray', borderWidth: 1, width: 230, height: '90%'}}></TextInput>
             </View>
         ),

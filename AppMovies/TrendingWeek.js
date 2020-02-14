@@ -39,6 +39,7 @@ export default class TrendingWeek extends React.Component {
           data={this.state.dataSource}
           style={{ flex: 1 }}
           horizontal={true}
+          showsHorizontalScrollIndicator={false}
           renderItem={({ item }) =>
             <View style={{ padding: 10 }}>
               <TouchableOpacity
@@ -47,12 +48,9 @@ export default class TrendingWeek extends React.Component {
                   this.props.navigation.navigate('Stack_DetailsMovies', {
                     Moviesid: item.id
                   })}>
-                <View style={{ flex: 7, width: width_item }}>
-                  <Image style={{ width: 80, height: 120, margin: 2 }}
-                    source={{ uri: 'https://image.tmdb.org/t/p/w600_and_h900_bestv2' + item.backdrop_path }} />
-                </View>
-                <View style={{ flexDirection: 'row' , flexShrink:1}} >
-                  <Text style={{ flexDirection:'column',flex:0.8, flexWrap: "wrap"}}> {item.title}</Text>
+                <View style={{ flex: 1, width: width_item }}>
+                  <Image style={{ flex: 1,width: 100,  resizeMode:'contain' }}
+                    source={{ uri: 'https://image.tmdb.org/t/p/w600_and_h900_bestv2' + item.poster_path }} />
                 </View>
               </TouchableOpacity>
             </View>
@@ -72,8 +70,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     flexShrink:1,
     padding: 5,
-    borderColor: 'gray',
-    borderWidth: 1,
+   
   },
 });
 var { width_item } = Dimensions.get('window') / 2;

@@ -83,14 +83,14 @@ export default class DetailsMovies extends React.Component {
           <View style={styles.Details}>
 
             <View style={styles.Details_title, { flexDirection: 'row' }}>
-              <View>
+              <View style={{flex: 4}}>
                 <Image
                   source={{ uri: 'https://image.tmdb.org/t/p/w600_and_h900_bestv2' + this.state.poster_path }}
-                  style={{ width: 180, height: 230 }}
-                  resizeMode='cover' >
+                  style={{flex: 1, width: 180}}
+                  resizeMode='contain' >
                 </Image>
               </View>
-              <View style={{ paddingLeft: 10 }}>
+              <View style={{ flex: 6,paddingLeft: 10 }}>
                 <Text style={{ fontSize: 20, fontWeight: 'bold', color: 'red' }}>{this.state.title}</Text>
                 <View style={{ flexDirection: 'row' }}>{loop_star}</View>
                 <Text></Text>
@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
   },
   Details: {
     flex: 6,
-    paddingLeft: 20,
+    paddingLeft: 15,
     marginTop: 20,
   },
   Details_title: {

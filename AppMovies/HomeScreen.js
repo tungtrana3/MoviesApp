@@ -18,13 +18,28 @@ import Genders from './Genders';
 import Movies from './Movies';
 import DetailsMovies from './DetailsMovies';
 import TrendingWeek from './TrendingWeek';
-
-export default class HomeScrees extends React.Component{
+export default class HomeScreen extends React.Component{
+    static navigationOptions = {
+        drawerLabel: 'Trang chủ',
+        drawerIcon: <Icon color='red' name='home'></Icon>
+      };
     render(){
         return(
-            <View style={{flex:1}}>
-                <TrendingWeek></TrendingWeek>
+            <View style={styles.container}>
+                <View style={styles.topweekMovies}>
+                    <Icon color='red' size={30} name='bookmark'> Top week</Icon>
+                    <TrendingWeek></TrendingWeek>
+                </View>
             </View>
         );
     }
 }
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#FFCCFF',
+    },
+    topweekMovies: {
+        padding: 5,
+    }
+})
