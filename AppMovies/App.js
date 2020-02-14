@@ -7,15 +7,19 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import Genders from './Genders';
 import Movies from './Movies';
 import DetailsMovies from './DetailsMovies';
+import TrendingWeek from './TrendingWeek';
+import HomeScreen from './HomeScreen'
 
 const RootStack = createStackNavigator(
   {
-    Stack_Genders: Genders,
+    Stack_Genders:Genders,
     Stack_Movies: Movies,
     Stack_DetailsMovies: DetailsMovies,
+    Stack_TrendingWeek: TrendingWeek,
+    Stack_HomeScreen : HomeScreen,
   },
   {
-    initialRouteName: 'Stack_Genders',
+    initialRouteName: 'Stack_HomeScreen',
     defaultNavigationOptions: {
       headerLeft: null,
         headerRight: () => (
@@ -32,5 +36,15 @@ const RootStack = createStackNavigator(
         headerBackTitleVisible: false,
     }
   });
-
-  export default createAppContainer(RootStack);
+  const MyDrawerNavigation = createDrawerNavigator({
+    Home: {
+      screen: RootStack,
+    },
+    Genders: {
+      screen: Genders,
+    },
+    Stack_TrendingWeek: {
+      screen: TrendingWeek,
+    }
+  });
+  export default createAppContainer(MyDrawerNavigation);

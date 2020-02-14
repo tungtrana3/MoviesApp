@@ -5,7 +5,6 @@ import { createStackNavigator } from 'react-navigation-stack';
 
 import RootStack from './App';
 export default class Genders extends React.Component {
-
   constructor(props){
     super(props);
     this.state ={ isLoading: true}
@@ -38,6 +37,7 @@ export default class Genders extends React.Component {
       <View style={{flex: 1, paddingTop:20}}>
         <FlatList
           data={this.state.dataSource}
+          numColumns={2}
           renderItem={({item}) => 
           <Button 
             title={item.name}
@@ -59,7 +59,9 @@ export default class Genders extends React.Component {
 
 const styles = StyleSheet.create({
     btn_genders: {
+      width:width_item,
       backgroundColor: '#0059FF',
       padding: 4,
     },
 });
+var { width_item } = Dimensions.get('window') / 2;
