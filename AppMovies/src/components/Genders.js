@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
-import RootStack from './App';
+import RootStack from '../../App';
 export default class Genders extends React.Component {
   constructor(props) {
     super(props);
@@ -45,7 +45,7 @@ export default class Genders extends React.Component {
       )
     }
     return (
-      <ImageBackground source={require('./IMG/background.jpg')} style={{ width: '100%', height: '100%' }}>
+      <ImageBackground source={require('../assets/background.jpg')} style={{ width: '100%', height: '100%' }}>
         <View style={{ flex: 1, padding: 10 }}>
           <FlatList
             data={this.state.dataSource}

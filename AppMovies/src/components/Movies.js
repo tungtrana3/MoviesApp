@@ -43,7 +43,7 @@ export default class Movies extends React.Component {
             );
         }
         return (
-            <ImageBackground source={require('./IMG/background.jpg')} style={{ width: '100%', height: '100%' }}>
+            <ImageBackground source={require('../assets/background.jpg')} style={{ width: '100%', height: '100%' }}>
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                     <FlatList
                         data={this.state.dataSource}

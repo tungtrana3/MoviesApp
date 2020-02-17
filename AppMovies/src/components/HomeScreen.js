@@ -24,7 +24,7 @@ export default class HomeScreen extends React.Component{
       };
     render(){
         return(
-            <ImageBackground source={require('./IMG/background.jpg')} style={{width: '100%', height: '100%'}}>
+            <ImageBackground source={require('../assets/background.jpg')} style={{width: '100%', height: '100%'}}>
             <View style={styles.container}>
                 <View style={styles.topweekMovies}>
                     <Icon color='red' size={25} name='bookmark'> Top week</Icon>

@@ -4,11 +4,11 @@ import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createDrawerNavigator } from 'react-navigation-drawer';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import Genders from './Genders';
-import Movies from './Movies';
-import DetailsMovies from './DetailsMovies';
-import TrendingWeek from './TrendingWeek';
-import HomeScreen from './HomeScreen'
+import Genders from './src/components/Genders';
+import Movies from './src/components/Movies';
+import DetailsMovies from './src/components/DetailsMovies';
+import TrendingWeek from './src/components/TrendingWeek';
+import HomeScreen from './src/components/HomeScreen'
 
 const RootStack = createStackNavigator(
   {

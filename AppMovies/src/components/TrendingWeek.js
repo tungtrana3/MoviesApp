@@ -3,15 +3,15 @@ import { FlatList, ActivityIndicator, Text, View, Image, StyleSheet, Dimensions,
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 
-import RootStack from './App';
-export default class TrendingDay extends React.Component {
+import RootStack from '../../App';
+export default class TrendingWeek extends React.Component {
   constructor(props) {
     super(props);
     this.state = { isLoading: true }
   }
 
   componentDidMount() {
-    return fetch('https://api.themoviedb.org/3/trending/all/day?api_key=72bc46a480f8823b727d49a624315d2e')
+    return fetch('https://api.themoviedb.org/3/trending/all/week?api_key=72bc46a480f8823b727d49a624315d2e')
       .then((response) => response.json())
       .then((responseJson) => {
         this.setState({
